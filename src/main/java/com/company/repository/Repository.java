@@ -19,7 +19,7 @@ public interface Repository {
 
     void add(PunctuationMark punctuationMark);
 
-    Map<Integer,String> removeFromSentences(String startSymbols, String endSymbols);
+    Map<Integer, String> removeFromSentences(String startSymbols, String endSymbols);
 
     String stats();
 }

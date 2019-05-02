@@ -82,7 +82,8 @@ public class TextParser implements Parser {
     private void charsProcessing(String token) {
         for (int i = 0; i < token.length(); i++) {
             if (token.charAt(i) == 33 || token.charAt(i) == 44
-                    || token.charAt(i) == 46 || token.charAt(i) == 63 || token.charAt(i) == 58) {
+                    || token.charAt(i) == 46 || token.charAt(i) == 63
+                    || token.charAt(i) == 58) {
                 textRepository.add(new PunctuationMark(token.charAt(i)));
             } else {
                 textRepository.add(new Symbol(token.charAt(i)));
