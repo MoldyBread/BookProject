@@ -7,7 +7,9 @@ import com.company.entity.Word;
 import com.company.repository.Repository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TextRepository implements Repository {
     private List<Sentence> sentences;
@@ -20,6 +22,11 @@ public class TextRepository implements Repository {
         this.words = new ArrayList<>();
         this.symbols = new ArrayList<>();
         this.punctuationMarks = new ArrayList<>();
+    }
+
+    @Override
+    public List<Sentence> getSentences() {
+        return sentences;
     }
 
     @Override
@@ -51,8 +58,22 @@ public class TextRepository implements Repository {
     }
 
     @Override
-    public void removeFromSentences(String startSymbols, String endSymbols){
+    public Map<Integer, String> removeFromSentences(String startSymbols, String endSymbols) {
+        Map<Integer, String> result = new HashMap<>();
+        for (int i = 0; i < sentences.size(); i++) {
+            deletion(i, startSymbols, endSymbols, result);
+        }
+        return result;
+    }
 
+    private void deletion(int index, String startSymbols, String endSymbols, Map<Integer, String> changes) {
+        String sentence = sentences.get(index).getSentence();
+        int start = sentence.indexOf(startSymbols);
+        int end = sentence.lastIndexOf(endSymbols);
+        if (start != -1 && end != -1 && start <= end) {
+            changes.put(index, sentence.substring(start, end + endSymbols.length()));
+            sentences.set(index, new Sentence(sentence.substring(0, start) + sentence.substring(end + 1)));
+        }
     }
 
     @Override

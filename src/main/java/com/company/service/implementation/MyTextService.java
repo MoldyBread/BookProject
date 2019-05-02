@@ -1,22 +1,31 @@
 package com.company.service.implementation;
 
-import com.company.repository.implementation.TextRepository;
+import com.company.repository.Repository;
 import com.company.service.TextService;
 
-public class MyTextService implements TextService {
-    private TextRepository textRepository;
+import java.util.Map;
 
-    public MyTextService(TextRepository textRepository) {
+public class MyTextService implements TextService {
+    private Repository textRepository;
+
+    public MyTextService(Repository textRepository) {
         this.textRepository = textRepository;
     }
 
     @Override
-    public String getStatistics(){
+    public String getStatistics() {
         return textRepository.stats();
     }
 
     @Override
-    public void removeFromSentences(String startSymbols, String endSymbols){
-        textRepository.removeFromSentences(startSymbols,endSymbols);
+    public String removeFromSentences(String startSymbols, String endSymbols) {
+        StringBuilder result = new StringBuilder();
+        Map<Integer, String> changes = textRepository.removeFromSentences(startSymbols, endSymbols);
+        for (Map.Entry<Integer, String> entry : changes.entrySet()) {
+            result.append("In sentence \"").append(textRepository.getSentences().get(entry.getKey())
+                    .getSentence()).append("\" removed this substring:\n")
+                    .append(entry.getValue()).append("\n");
+        }
+        return result.toString();
     }
 }

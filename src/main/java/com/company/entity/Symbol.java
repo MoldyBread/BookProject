@@ -9,10 +9,6 @@ public class Symbol {
         this.symbol = symbol;
     }
 
-    public char getSymbol() {
-        return symbol;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

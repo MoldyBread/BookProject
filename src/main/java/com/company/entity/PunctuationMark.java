@@ -9,10 +9,6 @@ public class PunctuationMark {
         this.punctuationMark = punctuationMark;
     }
 
-    public char getPunctuationMark() {
-        return punctuationMark;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
