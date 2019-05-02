@@ -13,4 +13,8 @@ public interface Repository {
     void add(Symbol symbol);
 
     void add(PunctuationMark punctuationMark);
+
+    void removeFromSentences(String startSymbols, String endSymbols);
+
+    String stats();
 }

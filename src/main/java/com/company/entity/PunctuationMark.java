@@ -1,14 +1,11 @@
 package com.company.entity;
 
-import com.company.utils.Utils;
-
 import java.util.Objects;
 
 public class PunctuationMark {
     private char punctuationMark;
 
     public PunctuationMark(char punctuationMark) {
-        Utils.punctuationMarkValidation(punctuationMark);
         this.punctuationMark = punctuationMark;
     }
 

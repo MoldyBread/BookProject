@@ -22,7 +22,8 @@ public class TextParser implements Parser {
     public TextParser(String fileName) throws IOException {
         text = new StringBuilder();
         readFile(fileName);
-        this.textRepository = new TextRepository(text.toString());
+        this.textRepository = new TextRepository();
+        textProcessing();
         fillRepository();
     }
 
@@ -34,32 +35,28 @@ public class TextParser implements Parser {
         while ((line = reader.readLine()) != null) {
             text.append(line).append(" ");
         }
-
     }
 
     private void fillRepository() {
-        textProcessing();
         String token;
         StringBuilder sentence = new StringBuilder();
         StringTokenizer st = new StringTokenizer(text.toString(), " ");
         while (st.hasMoreTokens()) {
-            token=st.nextToken();
+            token = st.nextToken();
             sentenceProcessing(token, sentence);
             textRepository.add(new Word(normalizeToken(token)));
             charsProcessing(token);
         }
-        System.out.println(textRepository);
     }
 
-
-    private void textProcessing(){
-        String s=text.toString();
+    private void textProcessing() {
+        String s = text.toString();
         char TABULATION = 9;
-        while(s.contains("  ")||s.contains(Character.toString(TABULATION))){
-            s=s.replace(Character.toString(TABULATION)," ");
-            s=s.replace("  "," ");
+        while (s.contains("  ") || s.contains(Character.toString(TABULATION))) {
+            s = s.replace(Character.toString(TABULATION), " ");
+            s = s.replace("  ", " ");
         }
-        text=new StringBuilder(s);
+        text = new StringBuilder(s);
     }
 
     private void sentenceProcessing(String token, StringBuilder sentence) {
@@ -84,8 +81,8 @@ public class TextParser implements Parser {
 
     private void charsProcessing(String token) {
         for (int i = 0; i < token.length(); i++) {
-            if (token.charAt(i) == 21 || token.charAt(i) == 44
-                    || token.charAt(i) == 46 || token.charAt(i) == 63) {
+            if (token.charAt(i) == 33 || token.charAt(i) == 44
+                    || token.charAt(i) == 46 || token.charAt(i) == 63 || token.charAt(i) == 58) {
                 textRepository.add(new PunctuationMark(token.charAt(i)));
             } else {
                 textRepository.add(new Symbol(token.charAt(i)));
@@ -94,7 +91,7 @@ public class TextParser implements Parser {
     }
 
     @Override
-    public TextRepository getRepository() {
-        return null;
+    public Repository getRepository() {
+        return textRepository;
     }
 }

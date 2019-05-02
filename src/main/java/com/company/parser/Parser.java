@@ -1,7 +1,7 @@
 package com.company.parser;
 
-import com.company.repository.implementation.TextRepository;
+import com.company.repository.Repository;
 
 public interface Parser {
-    TextRepository getRepository();
+    Repository getRepository();
 }

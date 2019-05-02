@@ -10,14 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TextRepository implements Repository {
-    private String text;
     private List<Sentence> sentences;
     private List<Word> words;
     private List<Symbol> symbols;
     private List<PunctuationMark> punctuationMarks;
 
-    public TextRepository(String text) {
-        this.text = text;
+    public TextRepository() {
         this.sentences = new ArrayList<>();
         this.words = new ArrayList<>();
         this.symbols = new ArrayList<>();
@@ -50,5 +48,19 @@ public class TextRepository implements Repository {
         if (!punctuationMarks.contains(punctuationMark)) {
             punctuationMarks.add(punctuationMark);
         }
+    }
+
+    @Override
+    public void removeFromSentences(String startSymbols, String endSymbols){
+
+    }
+
+    @Override
+    public String stats() {
+        return "(This statistics shows count of unique entities)\n"
+                + "Sentences: " + sentences.size() + "\n"
+                + "Words: " + words.size() + "\n"
+                + "Symbols: " + symbols.size() + "\n"
+                + "Punctuation marks: " + punctuationMarks.size();
     }
 }
