@@ -10,12 +10,20 @@ public class ConsoleUI {
 
     public ConsoleUI(TextService textService) {
         this.textService = textService;
-        scanner=new Scanner(System.in);
+        scanner = new Scanner(System.in);
     }
 
 
-    public void run(){
+    public void run() {
         System.out.println(textService.getStatistics());
-        System.out.println(textService.removeFromSentences("in","n"));
+        String startString;
+        String endString;
+
+        System.out.println("Write start string to remove from sentences: ");
+        startString = scanner.nextLine();
+        System.out.println("Write end string to remove from sentences: ");
+        endString = scanner.nextLine();
+
+        System.out.println(textService.removeFromSentences(startString, endString));
     }
 }
