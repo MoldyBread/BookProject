@@ -61,12 +61,12 @@ public class TextRepository implements Repository {
     public Map<Integer, String> removeFromSentences(String startSymbols, String endSymbols) {
         Map<Integer, String> result = new HashMap<>();
         for (int i = 0; i < sentences.size(); i++) {
-            deletion(i, startSymbols, endSymbols, result);
+            substringRemove(i, startSymbols, endSymbols, result);
         }
         return result;
     }
 
-    private void deletion(int index, String startSymbols, String endSymbols, Map<Integer, String> changes) {
+    private void substringRemove(int index, String startSymbols, String endSymbols, Map<Integer, String> changes) {
         String sentence = sentences.get(index).getSentence();
         int start = sentence.indexOf(startSymbols);
         int end = sentence.lastIndexOf(endSymbols);
