@@ -2,9 +2,21 @@ package com.company.entity;
 
 import java.util.Objects;
 
+/**
+ *  The {@code PunctuationMark} class represents a
+ *  Punctuation mark in repository
+ *
+ *  @author Liash Danylo
+ *
+ */
 public class PunctuationMark {
     private char punctuationMark;
 
+    /**
+     * Initializes punctuation mark
+     *
+     * @param punctuationMark Punctuation mark char to initialize
+     */
     public PunctuationMark(char punctuationMark) {
         this.punctuationMark = punctuationMark;
     }

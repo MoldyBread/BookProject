@@ -2,9 +2,21 @@ package com.company.entity;
 
 import java.util.Objects;
 
+/**
+ *  The {@code Sentence} class represents a
+ *  sentence in repository
+ *
+ *  @author Liash Danylo
+ *
+ */
 public class Sentence {
     private String sentence;
 
+    /**
+     * Initializes sentence
+     *
+     * @param sentence Sentence string to initialize
+     */
     public Sentence(String sentence) {
         this.sentence = sentence;
     }

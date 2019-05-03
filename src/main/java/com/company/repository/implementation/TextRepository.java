@@ -11,12 +11,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *  The {@code TextRepository} class represents an
+ *  implementation of {@code Repository}
+ *
+ *  @author Liash Danylo
+ *
+ */
 public class TextRepository implements Repository {
     private List<Sentence> sentences;
     private List<Word> words;
     private List<Symbol> symbols;
     private List<PunctuationMark> punctuationMarks;
 
+    /**
+     * Intitalizes empty repository
+     */
     public TextRepository() {
         this.sentences = new ArrayList<>();
         this.words = new ArrayList<>();
@@ -66,6 +76,14 @@ public class TextRepository implements Repository {
         return result;
     }
 
+    /**
+     * Removes substring from sentence
+     *
+     * @param index Index of sentence from substring is removed
+     * @param startSymbols Symbols from which substring sentence is removed
+     * @param endSymbols Last symbols to which substring sentence is removed
+     * @param changes Puts changes of this sentence to Map
+     */
     private void substringRemove(int index, String startSymbols, String endSymbols, Map<Integer, String> changes) {
         String sentence = sentences.get(index).getSentence();
         int start = sentence.indexOf(startSymbols);

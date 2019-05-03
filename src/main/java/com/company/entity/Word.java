@@ -2,9 +2,21 @@ package com.company.entity;
 
 import java.util.Objects;
 
+/**
+ *  The {@code Word} class represents a
+ *  word in repository
+ *
+ *  @author Liash Danylo
+ *
+ */
 public class Word {
     private String word;
 
+    /**
+     * Initializes word
+     *
+     * @param word Word string to initialize
+     */
     public Word(String word) {
         this.word = word;
     }

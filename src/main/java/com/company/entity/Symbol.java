@@ -2,9 +2,21 @@ package com.company.entity;
 
 import java.util.Objects;
 
+/**
+ *  The {@code Symbol} class represents a
+ *  symbol in repository
+ *
+ *  @author Liash Danylo
+ *
+ */
 public class Symbol {
     private char symbol;
 
+    /**
+     * Initializes symbol
+     *
+     * @param symbol Symbol char to initialize
+     */
     public Symbol(char symbol) {
         this.symbol = symbol;
     }

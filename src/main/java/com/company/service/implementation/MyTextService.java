@@ -5,9 +5,20 @@ import com.company.service.TextService;
 
 import java.util.Map;
 
+
+/**
+ *  The {@code MyTextService} class represents an
+ *  implementation of {@code TextService} to work with text repository
+ *
+ *  @author Liash Danylo
+ *
+ */
 public class MyTextService implements TextService {
     private Repository textRepository;
 
+    /**
+     *  Initializes TextService
+     */
     public MyTextService(Repository textRepository) {
         this.textRepository = textRepository;
     }
