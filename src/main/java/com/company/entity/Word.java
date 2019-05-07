@@ -1,24 +1,36 @@
 package com.company.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-/**
- *  The {@code Word} class represents a
- *  word in repository
- *
- *  @author Liash Danylo
- *
- */
 public class Word {
-    private String word;
+    private List<Symbol> word;
 
-    /**
-     * Initializes word
-     *
-     * @param word Word string to initialize
-     */
     public Word(String word) {
-        this.word = word;
+        this.word = new ArrayList<>();
+        setSymbols(word);
+    }
+
+    private void setSymbols(String word){
+        for (char c : word.toCharArray()) {
+            if (c == 33 || c == 44
+                    || c == 46 || c == 63
+                    || c == 58) {
+                this.word.add(new PunctuationMark(c));
+            }else{
+                this.word.add(new Symbol(c));
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        for (Symbol symbol:word) {
+            res.append(symbol);
+        }
+        return res.toString();
     }
 
     @Override

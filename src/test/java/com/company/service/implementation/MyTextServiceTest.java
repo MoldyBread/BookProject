@@ -18,8 +18,6 @@ public class MyTextServiceTest {
 
     @Mock
     private Repository repository;
-    @InjectMocks
-    private MyTextService myTextService;
 
     @Test
     public void shouldRemoveFromSentences() {

@@ -5,20 +5,9 @@ import com.company.service.TextService;
 
 import java.util.Map;
 
-
-/**
- *  The {@code MyTextService} class represents an
- *  implementation of {@code TextService} to work with text repository
- *
- *  @author Liash Danylo
- *
- */
 public class MyTextService implements TextService {
     private Repository textRepository;
 
-    /**
-     *  Initializes TextService
-     */
     public MyTextService(Repository textRepository) {
         this.textRepository = textRepository;
     }
@@ -33,10 +22,12 @@ public class MyTextService implements TextService {
         StringBuilder result = new StringBuilder();
         Map<Integer, String> changes = textRepository.removeFromSentences(startSymbols, endSymbols);
         for (Map.Entry<Integer, String> entry : changes.entrySet()) {
-            result.append("In sentence \"").append(textRepository.getSentences().get(entry.getKey())
-                    .getSentence()).append("\" removed this substring:\n")
+            result.append("In sentence \"");
+            result.append(textRepository.getSentences().get(entry.getKey()));
+            result.append("\" removed this substring:\n")
                     .append(entry.getValue()).append("\n");
         }
         return result.toString();
     }
+
 }
