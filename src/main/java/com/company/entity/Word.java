@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Word {
+public class Word implements SentencePart{
     private List<Symbol> word;
 
     public Word(String word) {
@@ -14,13 +14,7 @@ public class Word {
 
     private void setSymbols(String word){
         for (char c : word.toCharArray()) {
-            if (c == 33 || c == 44
-                    || c == 46 || c == 63
-                    || c == 58) {
-                this.word.add(new PunctuationMark(c));
-            }else{
-                this.word.add(new Symbol(c));
-            }
+            this.word.add(new Symbol(c));
         }
     }
 

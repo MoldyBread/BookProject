@@ -1,54 +1,45 @@
 package com.company.service.implementation;
 
-import com.company.repository.Repository;
-import org.junit.Assert;
+import com.company.text.textDecomposition;
+import javafx.util.Pair;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MyTextServiceTest {
 
     @Mock
-    private Repository repository;
+    private textDecomposition textDecomposition;
 
     @Test
     public void shouldRemoveFromSentences() {
         Map<Integer,String> map = new HashMap<>();
         map.put(5,"got big car");
-        when(repository.removeFromSentences("got","car")).thenReturn(map);
+        when(textDecomposition.removeFromSentences("got","car")).thenReturn(map);
 
-        Map<Integer,String> actual = repository.removeFromSentences("got","car");
+        Map<Integer,String> actual = textDecomposition.removeFromSentences("got","car");
         Map<Integer,String> expected = new HashMap<>();
         expected.put(5,"got big car");
 
-        Assert.assertEquals(expected,actual);
+        assertEquals(expected,actual);
     }
 
     @Test
     public void shouldReturnStatistics(){
-        String stats = "(This statistics shows count of unique entities)\n"
-                + "Sentences: " + 5 + "\n"
-                + "Words: " + 10 + "\n"
-                + "Symbols: " + 45 + "\n"
-                + "Punctuation marks: " + 4;
+        Pair<Integer, Integer> stats = new Pair<>(2,9);
 
-        when(repository.stats()).thenReturn(stats);
+        when(textDecomposition.stats()).thenReturn(stats);
 
-        String actual = repository.stats();
-        String expected = "(This statistics shows count of unique entities)\n"
-                + "Sentences: " + 5 + "\n"
-                + "Words: " + 10 + "\n"
-                + "Symbols: " + 45 + "\n"
-                + "Punctuation marks: " + 4;
-
-        Assert.assertEquals(expected,actual);
+        Pair<Integer, Integer> actual = textDecomposition.stats();
+        Pair<Integer, Integer> expected = new Pair<>(2,9);
+        assertEquals(expected,actual);
     }
 }

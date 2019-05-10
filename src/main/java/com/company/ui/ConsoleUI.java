@@ -15,7 +15,9 @@ public class ConsoleUI {
 
 
     public void run() {
-        System.out.println(textService.getStatistics());
+        System.out.println("(This statistics shows count of unique entities)\n" +
+                        "Sentences: " +textService.getStatistics().getKey()+"\n"
+                +"Sentence parts: "+textService.getStatistics().getValue());
         String startString;
         String endString;
 
@@ -25,5 +27,6 @@ public class ConsoleUI {
         endString = scanner.nextLine();
 
         System.out.println(textService.removeFromSentences(startString, endString));
+
     }
 }

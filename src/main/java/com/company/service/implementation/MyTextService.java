@@ -1,29 +1,30 @@
 package com.company.service.implementation;
 
-import com.company.repository.Repository;
+import com.company.text.textDecomposition;
 import com.company.service.TextService;
+import javafx.util.Pair;
 
 import java.util.Map;
 
 public class MyTextService implements TextService {
-    private Repository textRepository;
+    private textDecomposition textTextDecomposition;
 
-    public MyTextService(Repository textRepository) {
-        this.textRepository = textRepository;
+    public MyTextService(textDecomposition textTextDecomposition) {
+        this.textTextDecomposition = textTextDecomposition;
     }
 
     @Override
-    public String getStatistics() {
-        return textRepository.stats();
+    public Pair<Integer, Integer> getStatistics() {
+        return textTextDecomposition.stats();
     }
 
     @Override
     public String removeFromSentences(String startSymbols, String endSymbols) {
         StringBuilder result = new StringBuilder();
-        Map<Integer, String> changes = textRepository.removeFromSentences(startSymbols, endSymbols);
+        Map<Integer, String> changes = textTextDecomposition.removeFromSentences(startSymbols, endSymbols);
         for (Map.Entry<Integer, String> entry : changes.entrySet()) {
             result.append("In sentence \"");
-            result.append(textRepository.getSentences().get(entry.getKey()));
+            result.append(textTextDecomposition.getSentences().get(entry.getKey()));
             result.append("\" removed this substring:\n")
                     .append(entry.getValue()).append("\n");
         }

@@ -1,8 +1,8 @@
 package com.company.parser;
 
-import com.company.repository.Repository;
+import com.company.text.textDecomposition;
 
 
 public interface Parser {
-    Repository getRepository();
+    textDecomposition getRepository();
 }

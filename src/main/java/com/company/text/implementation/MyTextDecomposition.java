@@ -1,17 +1,19 @@
-package com.company.repository.implementation;
+package com.company.text.implementation;
 
 import com.company.entity.Sentence;
-import com.company.repository.Repository;
+import com.company.text.textDecomposition;
+import com.company.util.SentenceTools;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TextRepository implements Repository {
+public class MyTextDecomposition implements textDecomposition {
     private List<Sentence> sentences;
 
-    public TextRepository() {
+    public MyTextDecomposition() {
         this.sentences = new ArrayList<>();
     }
 
@@ -29,18 +31,23 @@ public class TextRepository implements Repository {
     public Map<Integer, String> removeFromSentences(String startSymbols, String endSymbols) {
         Map<Integer, String> result = new HashMap<>();
         for (int i = 0; i < sentences.size(); i++) {
-            String res = sentences.get(i).removeSubstring(startSymbols, endSymbols);
+            Pair<Sentence, String> res = SentenceTools.removeSubstring(sentences.get(i), startSymbols, endSymbols);
             if (res != null) {
-                result.put(i, res);
+                result.put(i, res.getValue());
+                sentences.set(i, res.getKey());
             }
         }
         return result;
     }
 
     @Override
-    public String stats() {
-        return "(This statistics shows count of unique entities)\n"
-                + "Sentences: " + sentences.size();
+    public Pair<Integer, Integer> stats() {
+        Pair<Integer, Integer> res;
+        int count = 0;
+        for (Sentence sentence : sentences) {
+            count += sentence.getSentencePartCount();
+        }
+        return new Pair<>(sentences.size(), count);
     }
 
 }

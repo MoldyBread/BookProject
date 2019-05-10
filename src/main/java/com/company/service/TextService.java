@@ -1,7 +1,9 @@
 package com.company.service;
 
+import javafx.util.Pair;
+
 public interface TextService {
-    String getStatistics();
+    Pair<Integer, Integer> getStatistics();
 
     String removeFromSentences(String startSymbols, String endSymbols);
 }

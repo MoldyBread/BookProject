@@ -3,8 +3,9 @@ package com.company.parser.implementation;
 import com.company.entity.Sentence;
 import com.company.entity.Word;
 import com.company.parser.Parser;
-import com.company.repository.Repository;
-import com.company.repository.implementation.TextRepository;
+import com.company.text.textDecomposition;
+import com.company.text.implementation.MyTextDecomposition;
+import com.company.util.SentenceTools;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -15,13 +16,13 @@ import java.util.StringTokenizer;
 
 
 public class TextParser implements Parser {
-    private Repository textRepository;
+    private textDecomposition textTextDecomposition;
     private StringBuilder text;
 
     public TextParser(String fileName) throws IOException {
         text = new StringBuilder();
         readFile(fileName);
-        this.textRepository = new TextRepository();
+        this.textTextDecomposition = new MyTextDecomposition();
         textProcessing();
         fillRepository();
     }
@@ -34,6 +35,8 @@ public class TextParser implements Parser {
         while ((line = reader.readLine()) != null) {
             text.append(line).append(" ");
         }
+
+        reader.close();
     }
 
     private void textProcessing() {
@@ -60,8 +63,9 @@ public class TextParser implements Parser {
 
     private boolean sentenceProcessing(String token, Sentence sentence) {
         if (isTokenMakesSentence(token)) {
-            sentence.add(new Word(token));
-            textRepository.add(sentence);
+            SentenceTools.tokenWordProcessing(token,sentence);
+
+            textTextDecomposition.add(sentence);
             return true;
         }
         sentence.add(new Word(token));
@@ -75,8 +79,10 @@ public class TextParser implements Parser {
     }
 
 
+
+
     @Override
-    public Repository getRepository() {
-        return textRepository;
+    public textDecomposition getRepository() {
+        return textTextDecomposition;
     }
 }

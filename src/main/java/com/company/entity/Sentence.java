@@ -3,10 +3,9 @@ package com.company.entity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.StringTokenizer;
 
 public class Sentence {
-    private List<Word> sentence;
+    private List<SentencePart> sentence;
 
     public Sentence() {
         this.sentence = new ArrayList<>();
@@ -16,25 +15,8 @@ public class Sentence {
         sentence.add(word);
     }
 
-    public String removeSubstring(String startSymbols, String endSymbols) {
-        String sentence = toString();
-        this.sentence = new ArrayList<>();
-        int start = sentence.indexOf(startSymbols);
-        int end = sentence.lastIndexOf(endSymbols)+endSymbols.length();
-        if (start != -1 && end != -1 && start <= end) {
-            String res = sentence.substring(start, end);
-            sentenceChange(sentence.substring(0, start) + sentence.substring(end));
-            return res;
-        }
-        return null;
-    }
-
-    private void sentenceChange(String sentence) {
-        this.sentence = new ArrayList<>();
-        StringTokenizer st = new StringTokenizer(sentence, " ");
-        while (st.hasMoreTokens()) {
-            add(new Word(st.nextToken()));
-        }
+    public void add(PunctuationMark punctuationMark) {
+        sentence.add(punctuationMark);
     }
 
     @Override
@@ -48,6 +30,10 @@ public class Sentence {
     @Override
     public int hashCode() {
         return Objects.hash(sentence);
+    }
+
+    public int getSentencePartCount(){
+        return sentence.size();
     }
 
     @Override

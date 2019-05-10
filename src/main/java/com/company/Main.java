@@ -12,5 +12,6 @@ public class Main {
         TextService textService = new MyTextService(new TextParser("1984.txt").getRepository());
         ConsoleUI consoleUI = new ConsoleUI(textService);
         consoleUI.run();
+
     }
 }
